@@ -85,7 +85,7 @@
                     button.classList.remove('incorrect');
                 }, 500);
             } else {
-                document.body.style.backgroundImage = "url('../img/eca.jpg')";
+                document.body.style.backgroundImage = "url('eca.jpg')";
                 const message = document.createElement('h1');
                 message.innerHTML = '<b> RESUMO DO FILME:</b>';
                 message.style.color = 'white';
@@ -93,7 +93,7 @@
                 document.body.appendChild(message);
                 const quizContainer = document.querySelector('.quiz-container');
                 quizContainer.remove();
-                var audio = new Audio('../img/messi.mp3');
+                var audio = new Audio('messi.mp3');
                 audio.play();
                 setTimeout(() => {
                     window.location.href = 'questtres.html';
