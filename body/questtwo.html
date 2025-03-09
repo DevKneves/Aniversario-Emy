@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .quiz-container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        .quiz-container button {
+            display: block;
+            width: 100%;
+            margin: 10px 0;
+            padding: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            border-radius: 4px;
+            background-color: #007BFF;
+            color: #fff;
+        }
+        .quiz-container button:hover {
+            background-color: #0056b3;
+        }
+        .incorrect {
+            background-color: red !important;
+            animation: shake 0.5s;
+        }
+        @keyframes shake {
+            0% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            50% { transform: translateX(5px); }
+            75% { transform: translateX(-5px); }
+            100% { transform: translateX(0); }
+        }
+    </style>
+</head>
+<body>
+    <div class="quiz-container">
+        <h1>Quem é o melhor ator / atriz do mundo?</h1>
+        <button onclick="again()">Wagner moura</button>
+        <script>
+            function again() {
+                alert('Esse é bom, mas está incorreto. Selecione outro!');
+            }
+        </script>
+        <button onclick="checkAnswer(this, false)">Michael Sheen</button>
+        <button onclick="checkAnswer(this, true)">Atriz da anora</button>
+        <button onmouseover="moveButton(this)" style="width: 600px;">Samo Rafael</button>
+        <script>
+            function moveButton(button) {
+            const container = button.parentElement;
+            const containerRect = container.getBoundingClientRect();
+            const buttonRect = button.getBoundingClientRect();
+            
+            const newTop = Math.random() * (containerRect.height - buttonRect.height);
+            const newLeft = Math.random() * (containerRect.width - buttonRect.width);
+            
+            button.style.position = 'absolute';
+            button.style.top = `${newTop}px`;
+            button.style.left = `${newLeft}px`;
+            }
+        </script>
+    </div>
+    <script>
+        function checkAnswer(button, isCorrect) {
+            if (!isCorrect) {
+                button.classList.add('incorrect');
+                setTimeout(() => {
+                    button.classList.remove('incorrect');
+                }, 500);
+            } else {
+                document.body.style.backgroundImage = "url('../img/eca.jpg')";
+                const message = document.createElement('h1');
+                message.innerHTML = '<b> RESUMO DO FILME:</b>';
+                message.style.color = 'white';
+                message.style.fontSize = '50px';
+                document.body.appendChild(message);
+                const quizContainer = document.querySelector('.quiz-container');
+                quizContainer.remove();
+                var audio = new Audio('../img/messi.mp3');
+                audio.play();
+                setTimeout(() => {
+                    window.location.href = 'questtres.html';
+                }, 4000);
+            }
+        }
+    </script>
+</body>
+</html>
